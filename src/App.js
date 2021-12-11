@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import NavBar from './components/NavBar';
+import { createCheckout, fetchCheckout, } from './redux/cartReducer';
+import { useDispatch } from 'react-redux'
+import HomePage from './components/HomePage';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import ProductsPage from './components/ProductsPage';
+import Cart from './components/Cart';
+import Client from "shopify-buy";
+import Footer from './components/Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+
+
+export const client = Client.buildClient({
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.REACT_APP_SHOPIFY_API
+})
+
 
 function App() {
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (localStorage.checkout_id) {
+      AOS.init()
+      dispatch(fetchCheckout(localStorage.checkout_id))
+    } else {
+      dispatch(createCheckout())
+    }
+
+  }, [dispatch])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <NavBar />
+        <Cart />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/products/:handle' element={<ProductsPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+
     </div>
   );
 }
