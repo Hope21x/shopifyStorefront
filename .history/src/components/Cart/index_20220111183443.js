@@ -49,7 +49,6 @@ const Cart = () => {
                     <DrawerBody>
                         {
                             checkout.lineItems?.length ? checkout.lineItems.map(({ title, id, variant }) => (
-                                
                                 <>
                                     <Grid templateColumns='repeat(4, 1fr)' gap={2} key={id}>
                                         <Flex alignItems='center' justifyContent='center'>

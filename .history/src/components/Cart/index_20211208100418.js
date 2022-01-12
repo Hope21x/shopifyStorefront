@@ -15,8 +15,8 @@ import {
     Link,
     Box,
 
-} from '@chakra-ui/react';
 
+} from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { toggleCloseCart, removeLineItems } from '../../redux/cartReducer'
 import { useDispatch } from 'react-redux'
@@ -49,7 +49,6 @@ const Cart = () => {
                     <DrawerBody>
                         {
                             checkout.lineItems?.length ? checkout.lineItems.map(({ title, id, variant }) => (
-                                
                                 <>
                                     <Grid templateColumns='repeat(4, 1fr)' gap={2} key={id}>
                                         <Flex alignItems='center' justifyContent='center'>

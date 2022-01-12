@@ -31,7 +31,6 @@ export const removeLineItems = createAsyncThunk('cart/removeLineItems', async (r
 const initialState = {
     checkout: [],
     isCartOpen: false,
-    checkoutId: null
 
 
 }
@@ -54,7 +53,6 @@ export const cartSlice = createSlice({
     extraReducers: {
         [createCheckout.fulfilled]: (state, action) => {
             state.checkout = [action.payload]
-            state.checkoutId = action.payload?.id ? action.payload.id : null
         },
         [getLineItems.fulfilled]: (state, action) => {
             state.checkout = action.payload

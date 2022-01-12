@@ -24,7 +24,7 @@ function App() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (checkoutId) {
+    if (check) {
       dispatch(fetchCheckout(checkoutId))
     } else {
       dispatch(createCheckout())

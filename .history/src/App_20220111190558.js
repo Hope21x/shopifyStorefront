@@ -24,7 +24,7 @@ function App() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (checkoutId) {
+    if (localStorage.checkout_id) {
       dispatch(fetchCheckout(checkoutId))
     } else {
       dispatch(createCheckout())

@@ -54,7 +54,7 @@ export const cartSlice = createSlice({
     extraReducers: {
         [createCheckout.fulfilled]: (state, action) => {
             state.checkout = [action.payload]
-            state.checkoutId = action.payload?.id ? action.payload.id : null
+            state.checkoutId = action.payload.i
         },
         [getLineItems.fulfilled]: (state, action) => {
             state.checkout = action.payload

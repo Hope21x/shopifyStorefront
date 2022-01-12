@@ -20,17 +20,16 @@ export const client = Client.buildClient({
 
 
 function App() {
-  const { checkoutId } = useSelector((state) => state.cart)
-
+  
   const dispatch = useDispatch()
   useEffect(() => {
-    if (checkoutId) {
-      dispatch(fetchCheckout(checkoutId))
+    if (localStorage.checkout_id) {
+      dispatch(fetchCheckout(localStorage.checkout_id))
     } else {
       dispatch(createCheckout())
     }
 
-  }, [dispatch, checkoutId])
+  }, [dispatch])
 
   return (
     <div>

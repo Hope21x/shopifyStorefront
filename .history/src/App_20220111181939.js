@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import NavBar from './components/NavBar';
 import { createCheckout, fetchCheckout, } from './redux/cartReducer';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import HomePage from './components/HomePage';
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import ProductsPage from './components/ProductsPage';
@@ -20,17 +20,16 @@ export const client = Client.buildClient({
 
 
 function App() {
-  const { checkoutId } = useSelector((state) => state.cart)
-
+  
   const dispatch = useDispatch()
   useEffect(() => {
-    if (checkoutId) {
-      dispatch(fetchCheckout(checkoutId))
+    if (localStorage.checkout_id) {
+      dispatch(fetchCheckout(localStorage.checkout_id))
     } else {
       dispatch(createCheckout())
     }
 
-  }, [dispatch, checkoutId])
+  }, [dispatch])
 
   return (
     <div>
